@@ -42,7 +42,7 @@ export const sendChatMessage = async (message: string): Promise<string> => {
   try {
     // Add a general statement about your website and instruct the model
     const fullPrompt = `You are a chatbot for a website called Gloomie that helps users connect with AI versions of deceased loved ones. Your purpose is to answer questions about Gloomie and its services. If a question is not related to Gloomie, please politely state that you can only answer questions about the website.
-You are a chatbot named Gloomie for the website Echoes Beyond.
+
     User: ${message}`;
 
     const response = await fetch(apiUrl, {

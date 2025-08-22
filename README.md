@@ -3,7 +3,6 @@
 **"Where memories meet technology."**
 
 Echoes Beyond is a pioneering platform that uses cutting-edge AI to recreate the voices, likeness, and conversational patterns of people who have passed away — enabling virtual video call interactions that feel deeply personal, emotional, and meaningful.
-
 ---
 
 ## 🧠 What is Echoes Beyond?

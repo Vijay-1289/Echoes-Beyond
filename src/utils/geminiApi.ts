@@ -40,6 +40,11 @@ export const sendChatMessage = async (message: string): Promise<string> => {
   const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
 
   try {
+    // Add a general statement about your website and instruct the model
+    const fullPrompt = `You are a chatbot for a website called Gloomie that helps users connect with AI versions of deceased loved ones. Your purpose is to answer questions about Gloomie and its services. If a question is not related to Gloomie, please politely state that you can only answer questions about the website.
+
+    User: ${message}`;
+
     const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
@@ -48,7 +53,7 @@ export const sendChatMessage = async (message: string): Promise<string> => {
       body: JSON.stringify({
         contents: [{
           parts: [
-            { text: message }
+            { text: fullPrompt }
           ]
         }]
       }),
@@ -57,8 +62,13 @@ export const sendChatMessage = async (message: string): Promise<string> => {
     if (!response.ok) {
       throw new Error(`API Error: ${response.status} - ${response.statusText}`);
     }
-    const data = await response.json();    
-    return data.message; // Assuming the API returns { message: 'AI response' }
+    const data = await response.json();
+
+    // Log the API response to inspect its structure
+    console.log('Gemini API Response:', data);
+
+    // Assuming the API returns the generated text in data.candidates[0].content.parts[0].text
+    return data.candidates?.[0]?.content?.parts?.[0]?.text || 'Error: Could not get a response from the AI.';
   } catch (error) {
     console.error('Error sending message to Gemini API:', error);
     return 'Error: Could not get a response from the AI.'; // Or handle the error as you see fit

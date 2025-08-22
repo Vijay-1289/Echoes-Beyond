@@ -51,14 +51,6 @@ export const sendChatMessage = async (message: string): Promise<string> => {
             { text: message }
           ]
         }]
-
-      },
-      body: JSON.stringify({
-        contents: [{
-          parts: [
-            { text: message }
-          ]
-        }]
       }),
     });
 

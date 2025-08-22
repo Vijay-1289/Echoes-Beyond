@@ -36,17 +36,26 @@ export const generateAvatarResponse = async (
 };
 
 export const sendChatMessage = async (message: string): Promise<string> => {
+  const apiKey = 'AIzaSyAv1w55nm72qtpFiij2FCBmQ0TxCAJ0iNg'; // Your Gemini API key
+  const apiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
+
   try {
-    const response = await fetch('/api/chat', {
+    const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ message }),
+      body: JSON.stringify({
+        contents: [{
+          parts: [
+            { text: message }
+          ]
+        }]
+      }),
     });
 
     if (!response.ok) {
-      throw new Error(`Error: ${response.status}`);
+      throw new Error(`API Error: ${response.status} - ${response.statusText}`);
     }
     const data = await response.json();
     return data.message; // Assuming the API returns { message: 'AI response' }

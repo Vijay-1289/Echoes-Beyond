@@ -19,7 +19,7 @@ export const generateAvatarResponse = async (
       - Message: ${message}
       - Image URL: ${imageUrl}
       - Voice: ${voice}
-      - API Key: AIzaSyCd7autLPMvO5VU-udEyvSeFx2oBZAPH5I`);
+      - API Key: AIzaSyDyXHENqkIGrYKEhF5bLJBveBmIPZdxct8`);
     
     // Simulate API processing time
     await new Promise(resolve => setTimeout(resolve, 1000));
